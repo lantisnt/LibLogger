@@ -79,9 +79,9 @@ local function _print(severity, timestamp, message, prefix)
         time = ""
     end
     if prefix then
-        print("|cffebb434" .. prefix .."|r " .. severityMessage .. time .. " " .. message)
+        print("|cffebb434" .. prefix .."|r " .. time .. " "  .. severityMessage .. " " .. message)
     else
-        print(severityMessage .. time .. " " .. message)
+        print(time .. " " .. severityMessage .. " " .. message)
     end
 end
 
