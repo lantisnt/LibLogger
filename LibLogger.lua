@@ -113,12 +113,13 @@ function LibLogger:New(database)
     o.database = type(database) == "table" and database or {}
     o.verbose = true
     o.severity = LibLogger.SEVERITY.WARNING
+    o.prefix = nil
 
     return o
 end
 
 function LibLogger:Message(fmt, ...)
-    _print(nil, GetServerTime(), _format(fmt, ...))
+    _print(nil, GetServerTime(), _format(fmt, ...), self.prefix)
 end
 
 function LibLogger:Trace(fmt, ...)
@@ -160,6 +161,14 @@ end
 
 function LibLogger:GetVerbosity()
     return self.verbosity
+end
+
+function LibLogger:SetPrefix(prefix)
+    self.prefix = (type(prefix) == "string") and prefix or nil
+end
+
+function LibLogger:GetPrefix()
+    return self.prefix
 end
 
 function LibLogger:SetDatabase(object)

@@ -94,6 +94,16 @@ In addition to `LibLogger.SEVERITY` there is also `LibLogger.SEVERITY_LEVEL` arr
     Returns:
     * `verbosity`: `true` if printing messages during logging, `false` otherwise
 
+* **`function Logger:SetPrefix(prefix))`**
+
+    Arguments:
+    * `prefix`: set printed prefix to `prefix`. Set to `nil` to ignore
+
+* **`function Logger:GetPrefix()`**
+
+    Returns:
+    * `prefix`: currently set `prefix` or `nil` if not set
+
 * **`function Logger:SetDatabase(object)`**
     
     Arguments:
