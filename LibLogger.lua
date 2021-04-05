@@ -94,7 +94,7 @@ local function log(logger, severity, force, fmt, ...)
     if severity >= logger.severity then
         local entry = LogEntry:new(severity, _format(fmt, ...))
         table.insert(logger.database, entry)
-        if logger.verbose or force then
+        if logger.verbosity or force then
             _print(entry.s, entry.t, entry.m, logger.prefix)
         end
     end
@@ -111,7 +111,7 @@ function LibLogger:New(database)
     self.__index = self
 
     o.database = type(database) == "table" and database or {}
-    o.verbose = true
+    o.verbosity = true
     o.severity = LibLogger.SEVERITY.WARNING
     o.prefix = nil
 
@@ -156,7 +156,7 @@ function LibLogger:GetSeverity()
 end
 
 function LibLogger:SetVerbosity(verbosity)
-    self.verbosity = verbosity and true or false
+    self.verbosity = verbosity
 end
 
 function LibLogger:GetVerbosity()
