@@ -91,7 +91,7 @@ local function _format(fmt, ...)
 end
 
 local function log(logger, severity, force, fmt, ...)
-    if (logger.severity or 1000) >= severity then
+    if logger.severity >= severity then
         local entry = LogEntry:new(severity, _format(fmt, ...))
         table.insert(logger.database, entry)
         if logger.verbose or force then
