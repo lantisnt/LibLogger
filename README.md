@@ -16,11 +16,12 @@ local Logger = LibLogger:New()
 * **`Logger:New(database)`**
 
     Arguments:
-    * `database`: table object to hold the entries.  
+    * `database`: (optional) table object to hold the entries.
                   Intended for setting WoW Saved Variable object 
 
     Returns:
     * `Logger`: LibLogger logger object
+
 * **`Logger:Message(message, ...)`**
 
     Arguments:
@@ -107,5 +108,10 @@ In addition to `LibLogger.SEVERITY` there is also `LibLogger.SEVERITY_LEVEL` arr
 * **`function Logger:SetDatabase(object)`**
     
     Arguments:
-    * `table`: set the logging database to object. Currently logged entries are retained.  
+    * `object`: set the logging database to object. Currently logged entries are retained.  
                Intended for setting WoW Saved Variable object 
+
+* **`function Logger:GetDatabase()`**
+
+    Returns:
+    * `database`: database table reference

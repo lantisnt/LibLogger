@@ -110,7 +110,7 @@ function LibLogger:New(database)
     setmetatable(o, self)
     self.__index = self
 
-    o.database = type(database) == "table" and database or {}
+    o.database = database or {}
     o.verbosity = true
     o.severity = LibLogger.SEVERITY.WARNING
     o.prefix = nil
@@ -139,7 +139,7 @@ function LibLogger:Warning(fmt, ...)
 end
 
 function LibLogger:Error(fmt, ...)
-    _log(self, LibLogger.SEVERITY.ERROR, false, fmt, ...)
+    _log(self, LibLogger.SEVERITY.ERROR, true, fmt, ...)
 end
 
 function LibLogger:Fatal(fmt, ...)
@@ -176,6 +176,10 @@ function LibLogger:SetDatabase(object)
         table.insert(object, entry)
     end
     self.database = object
+end
+
+function LibLogger:GetDatabase()
+    return self.database
 end
 
 return LibLogger
