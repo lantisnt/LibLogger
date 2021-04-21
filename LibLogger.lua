@@ -115,11 +115,21 @@ function LibLogger:New(database)
     o.severity = LibLogger.SEVERITY.WARNING
     o.prefix = nil
 
+    o.counters = {}
+
     return o
 end
 
 function LibLogger:Message(fmt, ...)
     _print(nil, GetServerTime(), _format(fmt, ...), self.prefix)
+end
+
+function LibLogger:TraceAndCount(fmt, ...)
+    if not self.counters[fmt] then
+        self.counters[fmt] = 0
+    end
+    self.counters[fmt] = self.counters[fmt] + 1
+    _log(self, LibLogger.SEVERITY.TRACE, false, "[%d] " .. fmt, self.counters[fmt], ...)
 end
 
 function LibLogger:Trace(fmt, ...)
