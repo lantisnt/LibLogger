@@ -72,7 +72,7 @@ end
 local print = print
 local function _print(severity, timestamp, message, prefix)
     local severityMessage = getColoredSeverity(severity) or ""
-    if severityMessage:len() > 0 then severityMessage = severityMessage .. " "
+    if severityMessage:len() > 0 then severityMessage = severityMessage .. " " end
     local time
     if timestamp then
         time = date("%H:%M:%S", timestamp) .. " "
