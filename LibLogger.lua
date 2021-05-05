@@ -72,16 +72,17 @@ end
 local print = print
 local function _print(severity, timestamp, message, prefix)
     local severityMessage = getColoredSeverity(severity) or ""
+    if severityMessage:len() > 0 then severityMessage = severityMessage .. " "
     local time
     if timestamp then
-        time = date("%H:%M:%S", timestamp)
+        time = date("%H:%M:%S", timestamp) .. " "
     else
         time = ""
     end
     if prefix then
-        print("|cffebb434" .. prefix .."|r " .. time .. " "  .. severityMessage .. " " .. message)
+        print("|cffebb434" .. prefix .."|r " .. time  .. severityMessage .. message)
     else
-        print(time .. " " .. severityMessage .. " " .. message)
+        print(time .. severityMessage .. message)
     end
 end
 
@@ -121,7 +122,7 @@ function LibLogger:New(database)
 end
 
 function LibLogger:Message(fmt, ...)
-    _print(nil, GetServerTime(), _format(fmt, ...), self.prefix)
+    _print(nil, nil, _format(fmt, ...), self.prefix)
 end
 
 function LibLogger:TraceAndCount(fmt, ...)
